@@ -1,19 +1,6 @@
 module Aviary.Birds exposing (identity, kestrel, bluebird, cardinal, applicator, psi, becard, blackbird, bluebirdPrime, bunting, cardinalPrime, cardinalStar, cardinalStarStar, dickcissel, dove, dovekie, eagle, eaglebald, finch, finchStar, finchStarStar, goldfinch, hummingbird, identityStar, identityStarStar, jayStar, jayPrime, jay, kite, owl, phoenix, quacky, queer, quirky, quixotic, quizzical, robin, robinStar, robinStarStar, starling, starlingPrime, thrush, vireo, vireoStar, vireoStarStar, warbler, warbler1, warblerStar, warblerStarStar)
 
-{-| This library exposes an elm implementation of the birds from combinatory logic.
-
-Each bird in the Aviary represents a [function composition pattern](https://en.wikipedia.org/wiki/Function_composition) and each bird is implemented, as far as is possible, using [SKI combinator calculus](https://en.wikipedia.org/wiki/SKI_combinator_calculus) under the hood.
-
-
-# Usage
-
-To import all birds, add the following at the top of your file:
-
-    import Aviary.Birds exposing (..)
-
-You can also just import specific birds such as the [Kestrel](#kestrel) and [Psi](#psi) for example:
-
-    import Aviary.Birds exposing (kestrel, psi)
+{-| This module represents each bird available within the Aviary.
 
 
 # Birds
@@ -30,8 +17,10 @@ import Aviary.Combinators
 Returns whatever it is given.
 
     Aviary.Birds.identity 1 --> 1
-    Aviary.Birds.identity [1, 2, 3] --> [1, 2, 3]
-    Aviary.Birds.identity String.fromInt = String.fromInt
+
+    Aviary.Birds.identity [ 1, 2, 3 ] --> [1, 2, 3]
+
+    Aviary.Birds.identity String.fromInt --> String.fromInt
 
 -}
 identity : a -> a
@@ -108,11 +97,9 @@ Sometimes referred to as "the reverse pipe operator".
 
 The equivilent of the "pipe left" operator `(<|)` in Elm.
 
-    applicator String.fromInt 1 == "1"
+    applicator String.fromInt 1 --> "1"
 
-    applicator List.sum [ 1, 2, 3 ] == 6
-
-    applicator Result.fromMaybe Nothing == Err
+    applicator List.sum [ 1, 2, 3 ] --> 6
 
 -}
 applicator : (a -> b) -> a -> b

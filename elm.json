@@ -3,7 +3,7 @@
     "name": "jamesrweb/elm-aviary",
     "summary": "An elm implementation of the birds from combinatory logic.",
     "license": "BSD-3-Clause",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "exposed-modules": [
         "Aviary.Birds"
     ],
