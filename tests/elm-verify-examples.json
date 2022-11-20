@@ -1,4 +1,4 @@
 {
-    "root": "../src",
-    "tests": ["Aviary.Birds"]
+  "root": "../src",
+  "tests": ["Aviary.Birds"]
 }

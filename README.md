@@ -7,7 +7,7 @@ Each bird in the Aviary represents a [function composition pattern](https://en.w
 ## Installation
 
 ```sh
-    elm install jamesrweb/elm-aviary
+elm install jamesrweb/elm-aviary
 ```
 
 ## Usage
@@ -15,13 +15,13 @@ Each bird in the Aviary represents a [function composition pattern](https://en.w
 To import all birds, add the following at the top of your file:
 
 ```elm
-    import Aviary.Birds exposing (..)
+import Aviary.Birds exposing (..)
 ```
 
 You can also just import specific birds such as the Kestrel and Psi for example:
 
 ```elm
-    import Aviary.Birds exposing (kestrel, psi)
+import Aviary.Birds exposing (kestrel, psi)
 ```
 
 ## Development
