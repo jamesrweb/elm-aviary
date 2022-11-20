@@ -9,7 +9,7 @@ module Aviary.Birds exposing (identity, kestrel, bluebird, cardinal, applicator,
 
 -}
 
-import Aviary.Combinators
+import Combinators
 
 
 {-| Identity, also known as "idiot".
@@ -25,7 +25,7 @@ Returns whatever it is given.
 -}
 identity : a -> a
 identity =
-    Aviary.Combinators.i
+    Combinators.i
 
 
 {-| Kestrel.
@@ -41,7 +41,7 @@ Returns the first argument provided, ignoring the second.
 -}
 kestrel : a -> b -> a
 kestrel =
-    Aviary.Combinators.k
+    Combinators.k
 
 
 {-| Bluebird.
@@ -63,7 +63,7 @@ The equivilent of the composition operator `(<<)` in Elm.
 -}
 bluebird : (b -> c) -> (a -> b) -> a -> c
 bluebird =
-    Aviary.Combinators.b
+    Combinators.b
 
 
 {-| Cardinal, also known as "flip".
@@ -86,7 +86,7 @@ Useful in pipelines where the piped value is required to be the first argument t
 -}
 cardinal : (a -> b -> c) -> b -> a -> c
 cardinal =
-    Aviary.Combinators.c
+    Combinators.c
 
 
 {-| Applicator.
@@ -104,7 +104,7 @@ The equivilent of the "pipe left" operator `(<|)` in Elm.
 -}
 applicator : (a -> b) -> a -> b
 applicator =
-    Aviary.Combinators.a
+    Combinators.a
 
 
 {-| Psi.
@@ -124,7 +124,7 @@ Equivelent of the [on](https://hackage.haskell.org/package/base-4.17.0.0/docs/Da
 -}
 psi : (b -> b -> c) -> (a -> b) -> a -> a -> c
 psi =
-    Aviary.Combinators.p
+    Combinators.p
 
 
 {-| Becard.
@@ -138,7 +138,7 @@ Triple composition of a given value.
 -}
 becard : (c -> d) -> (b -> c) -> (a -> b) -> a -> d
 becard =
-    Aviary.Combinators.b3
+    Combinators.b3
 
 
 {-| Blackbird.
@@ -150,7 +150,7 @@ becard =
 -}
 blackbird : (b -> c) -> (a -> d -> b) -> a -> d -> c
 blackbird =
-    Aviary.Combinators.b1
+    Combinators.b1
 
 
 {-| Bluebird prime.
@@ -162,7 +162,7 @@ blackbird =
 -}
 bluebirdPrime : (a -> c -> d) -> a -> (b -> c) -> b -> d
 bluebirdPrime =
-    Aviary.Combinators.bp
+    Combinators.bp
 
 
 {-| Bunting.
@@ -184,7 +184,7 @@ bluebirdPrime =
 -}
 bunting : (d -> e) -> (a -> b -> c -> d) -> a -> b -> c -> e
 bunting =
-    Aviary.Combinators.b2
+    Combinators.b2
 
 
 {-| Cardinal Prime.
@@ -196,7 +196,7 @@ bunting =
 -}
 cardinalPrime : (c -> a -> d) -> (b -> c) -> a -> b -> d
 cardinalPrime =
-    Aviary.Combinators.cp
+    Combinators.cp
 
 
 {-| Cardinal once removed.
@@ -210,7 +210,7 @@ Flips the third and fourth arguments when applied to the given ternary function.
 -}
 cardinalStar : (a -> c -> b -> d) -> a -> b -> c -> d
 cardinalStar =
-    Aviary.Combinators.cs
+    Combinators.cs
 
 
 {-| Cardinal twice removed.
@@ -222,7 +222,7 @@ Flips the fourth and fifth arguments when applied to the given quaternary functi
 -}
 cardinalStarStar : (a -> b -> d -> c -> e) -> a -> b -> c -> d -> e
 cardinalStarStar =
-    Aviary.Combinators.css
+    Combinators.css
 
 
 {-| Dickcissel.
@@ -232,7 +232,7 @@ cardinalStarStar =
 -}
 dickcissel : (a -> b -> d -> e) -> a -> b -> (c -> d) -> c -> e
 dickcissel =
-    Aviary.Combinators.d1
+    Combinators.d1
 
 
 {-| Dove.
@@ -242,7 +242,7 @@ dickcissel =
 -}
 dove : (a -> c -> d) -> a -> (b -> c) -> b -> d
 dove =
-    Aviary.Combinators.d
+    Combinators.d
 
 
 {-| Dovekie.
@@ -252,7 +252,7 @@ dove =
 -}
 dovekie : (c -> d -> e) -> (a -> c) -> a -> (b -> d) -> b -> e
 dovekie =
-    Aviary.Combinators.d2
+    Combinators.d2
 
 
 {-| Eagle.
@@ -262,7 +262,7 @@ dovekie =
 -}
 eagle : (a -> d -> e) -> a -> (b -> c -> d) -> b -> c -> e
 eagle =
-    Aviary.Combinators.e
+    Combinators.e
 
 
 {-| Bald eagle.
@@ -272,7 +272,7 @@ eagle =
 -}
 eaglebald : (e -> f -> g) -> (a -> b -> e) -> a -> b -> (c -> d -> f) -> c -> d -> g
 eaglebald =
-    Aviary.Combinators.ê
+    Combinators.eb
 
 
 {-| Finch.
@@ -284,7 +284,7 @@ eaglebald =
 -}
 finch : a -> b -> (b -> a -> c) -> c
 finch =
-    Aviary.Combinators.f
+    Combinators.f
 
 
 {-| Finch once removed.
@@ -296,7 +296,7 @@ Reverses the second, third and fourth arguments when applied to the given ternar
 -}
 finchStar : (c -> b -> a -> d) -> a -> b -> c -> d
 finchStar =
-    Aviary.Combinators.fs
+    Combinators.fs
 
 
 {-| Finch twice removed.
@@ -308,7 +308,7 @@ Flips the third and fifth arguments when applied to the given quaternary functio
 -}
 finchStarStar : (a -> d -> c -> b -> e) -> a -> b -> c -> d -> e
 finchStarStar =
-    Aviary.Combinators.fss
+    Combinators.fss
 
 
 {-| Goldfinch.
@@ -318,7 +318,7 @@ finchStarStar =
 -}
 goldfinch : (b -> c -> d) -> (a -> c) -> a -> b -> d
 goldfinch =
-    Aviary.Combinators.g
+    Combinators.g
 
 
 {-| Hummingbird.
@@ -328,7 +328,7 @@ goldfinch =
 -}
 hummingbird : (a -> b -> a -> c) -> a -> b -> c
 hummingbird =
-    Aviary.Combinators.h
+    Combinators.h
 
 
 {-| Identity bird once removed.
@@ -338,7 +338,7 @@ hummingbird =
 -}
 identityStar : (a -> b) -> a -> b
 identityStar =
-    Aviary.Combinators.is
+    Combinators.is
 
 
 {-| Identity bird twice removed
@@ -348,7 +348,7 @@ identityStar =
 -}
 identityStarStar : (a -> b -> c) -> a -> b -> c
 identityStarStar =
-    Aviary.Combinators.iss
+    Combinators.iss
 
 
 {-| Jay once removed.
@@ -358,7 +358,7 @@ identityStarStar =
 -}
 jayStar : (a -> c) -> a -> b -> c
 jayStar =
-    Aviary.Combinators.js
+    Combinators.js
 
 
 {-| Jay Prime.
@@ -368,7 +368,7 @@ jayStar =
 -}
 jayPrime : (a -> b -> d) -> a -> b -> c -> d
 jayPrime =
-    Aviary.Combinators.jp
+    Combinators.jp
 
 
 {-| Jay.
@@ -378,7 +378,7 @@ jayPrime =
 -}
 jay : (a -> b -> b) -> a -> b -> a -> b
 jay =
-    Aviary.Combinators.j
+    Combinators.j
 
 
 {-| Kite.
@@ -394,7 +394,7 @@ Returns the second argument provided, ignoring the first.
 -}
 kite : a -> b -> b
 kite =
-    Aviary.Combinators.ki
+    Combinators.ki
 
 
 {-| Owl.
@@ -404,7 +404,7 @@ kite =
 -}
 owl : ((a -> b) -> a) -> (a -> b) -> b
 owl =
-    Aviary.Combinators.o
+    Combinators.o
 
 
 {-| Phoenix.
@@ -416,7 +416,7 @@ This is equivilant to the [Starling Prime](#starlingPrime) combinator.
 -}
 phoenix : (b -> c -> d) -> (a -> b) -> (a -> c) -> a -> d
 phoenix =
-    Aviary.Combinators.px
+    Combinators.px
 
 
 {-| Quacky bird.
@@ -428,7 +428,7 @@ phoenix =
 -}
 quacky : a -> (a -> b) -> (b -> c) -> c
 quacky =
-    Aviary.Combinators.q4
+    Combinators.q4
 
 
 {-| Queer bird.
@@ -442,7 +442,7 @@ Reverse function composition.
 -}
 queer : (a -> b) -> (b -> c) -> a -> c
 queer =
-    Aviary.Combinators.q
+    Combinators.q
 
 
 {-| Quirky bird.
@@ -454,7 +454,7 @@ queer =
 -}
 quirky : (a -> b) -> a -> (b -> c) -> c
 quirky =
-    Aviary.Combinators.q3
+    Combinators.q3
 
 
 {-| Quixotic bird.
@@ -466,7 +466,7 @@ quirky =
 -}
 quixotic : (b -> c) -> a -> (a -> b) -> c
 quixotic =
-    Aviary.Combinators.q1
+    Combinators.q1
 
 
 {-| Quizzical bird.
@@ -478,7 +478,7 @@ quixotic =
 -}
 quizzical : a -> (b -> c) -> (a -> b) -> c
 quizzical =
-    Aviary.Combinators.q2
+    Combinators.q2
 
 
 {-| Robin.
@@ -490,7 +490,7 @@ quizzical =
 -}
 robin : a -> (b -> a -> c) -> b -> c
 robin =
-    Aviary.Combinators.r
+    Combinators.r
 
 
 {-| Robin once removed.
@@ -504,7 +504,7 @@ robin =
 -}
 robinStar : (b -> c -> a -> d) -> a -> b -> c -> d
 robinStar =
-    Aviary.Combinators.rs
+    Combinators.rs
 
 
 {-| Robin twice removed.
@@ -514,7 +514,7 @@ robinStar =
 -}
 robinStarStar : (a -> c -> d -> b -> e) -> a -> b -> c -> d -> e
 robinStarStar =
-    Aviary.Combinators.rss
+    Combinators.rss
 
 
 {-| Starling.
@@ -528,7 +528,7 @@ robinStarStar =
 -}
 starling : (a -> b -> c) -> (a -> b) -> a -> c
 starling =
-    Aviary.Combinators.s
+    Combinators.s
 
 
 {-| Starling Prime.
@@ -538,7 +538,7 @@ starling =
 -}
 starlingPrime : (b -> c -> d) -> (a -> b) -> (a -> c) -> a -> d
 starlingPrime =
-    Aviary.Combinators.sp
+    Combinators.sp
 
 
 {-| Thrush.
@@ -556,7 +556,7 @@ The equivilent of the "pipe right" operator `(|>)` in Elm.
 -}
 thrush : a -> (a -> b) -> b
 thrush =
-    Aviary.Combinators.t
+    Combinators.t
 
 
 {-| Vireo.
@@ -568,7 +568,7 @@ thrush =
 -}
 vireo : a -> b -> (a -> b -> c) -> c
 vireo =
-    Aviary.Combinators.v
+    Combinators.v
 
 
 {-| Vireo once removed.
@@ -578,7 +578,7 @@ vireo =
 -}
 vireoStar : (b -> a -> b -> d) -> a -> b -> b -> d
 vireoStar =
-    Aviary.Combinators.vs
+    Combinators.vs
 
 
 {-| Vireo twice removed.
@@ -588,7 +588,7 @@ vireoStar =
 -}
 vireoStarStar : (a -> c -> b -> c -> e) -> a -> b -> c -> c -> e
 vireoStarStar =
-    Aviary.Combinators.vss
+    Combinators.vss
 
 
 {-| Warbler.
@@ -600,7 +600,7 @@ Provides a given argument as both values to a given binary function.
 -}
 warbler : (a -> a -> b) -> a -> b
 warbler =
-    Aviary.Combinators.w
+    Combinators.w
 
 
 {-| Converse warbler.
@@ -612,7 +612,7 @@ The [warbler](#warbler) but with the input arguments reversed.
 -}
 warbler1 : a -> (a -> a -> b) -> b
 warbler1 =
-    Aviary.Combinators.w1
+    Combinators.w1
 
 
 {-| Warbler once removed.
@@ -622,7 +622,7 @@ warbler1 =
 -}
 warblerStar : (a -> b -> b -> c) -> a -> b -> c
 warblerStar =
-    Aviary.Combinators.ws
+    Combinators.ws
 
 
 {-| Warbler twice removed.
@@ -632,4 +632,4 @@ warblerStar =
 -}
 warblerStarStar : (a -> b -> c -> c -> d) -> a -> b -> c -> d
 warblerStarStar =
-    Aviary.Combinators.wss
+    Combinators.wss

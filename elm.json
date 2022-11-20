@@ -3,13 +3,14 @@
     "name": "jamesrweb/elm-aviary",
     "summary": "An elm implementation of the birds from combinatory logic.",
     "license": "BSD-3-Clause",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "exposed-modules": [
         "Aviary.Birds"
     ],
     "elm-version": "0.19.0 <= v < 0.20.0",
     "dependencies": {
-        "elm/core": "1.0.0 <= v < 2.0.0"
+        "elm/core": "1.0.0 <= v < 2.0.0",
+        "jamesrweb/elm-combinators": "1.0.0 <= v < 2.0.0"
     },
     "test-dependencies": {
         "elm-explorations/test": "2.0.1 <= v < 3.0.0"
