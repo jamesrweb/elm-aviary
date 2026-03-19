@@ -1,0 +1,26 @@
+{
+  "name": "elm-aviary",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "format": "elm-format src/ --yes && biome format --write",
+    "lint": "elm-verify-examples && elm-format src/ --validate && elm-review && biome check",
+    "test": "elm-verify-examples && elm-test"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.32.1",
+  "dependencies": {
+    "elm": "0.19.1-6",
+    "elm-format": "^0.8.8",
+    "elm-json": "^0.2.13",
+    "elm-review": "^2.13.5",
+    "elm-test": "0.19.1-revision15",
+    "elm-verify-examples": "^6.0.3"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.4.8"
+  }
+}

@@ -42,33 +42,34 @@ import Simplify
 
 config : List Rule
 config =
-    [ Docs.NoMissing.rule
-        { document = onlyExposed
-        , from = exposedModules
-        }
-    , Docs.ReviewAtDocs.rule
-    , Docs.ReviewLinksAndSections.rule
-    , Docs.UpToDateReadmeLinks.rule
-    , NoConfusingPrefixOperator.rule
-    , NoDebug.Log.rule
-    , NoExposingEverything.rule
-    , NoImportingEverything.rule []
-    , NoMissingTypeAnnotation.rule
-    , NoMissingTypeAnnotationInLetIn.rule
-    , NoMissingTypeExpose.rule
-    , NoPrematureLetComputation.rule
-    , NoSimpleLetBody.rule
-    , NoUnsortedCases.rule NoUnsortedCases.defaults
-    , NoUnsortedLetDeclarations.rule (NoUnsortedLetDeclarations.sortLetDeclarations |> NoUnsortedLetDeclarations.usedInExpressionFirst |> NoUnsortedLetDeclarations.alphabetically)
-    , NoUnsortedRecords.rule (NoUnsortedRecords.defaults |> NoUnsortedRecords.reportAmbiguousRecordsWithoutFix)
-    , NoUnsortedTopLevelDeclarations.rule (NoUnsortedTopLevelDeclarations.sortTopLevelDeclarations |> NoUnsortedTopLevelDeclarations.portsFirst |> NoUnsortedTopLevelDeclarations.exposedOrderWithPrivateLast |> NoUnsortedTopLevelDeclarations.alphabetically)
-    , NoUnused.CustomTypeConstructorArgs.rule
-    , NoUnused.CustomTypeConstructors.rule []
-    , NoUnused.Dependencies.rule
-    , NoUnused.Exports.rule
-    , NoUnused.Parameters.rule
-    , NoUnused.Patterns.rule
-    , NoUnused.Variables.rule
-    , Rule.ignoreErrorsForDirectories [ "tests/" ] NoDebug.TodoOrToString.rule
-    , Simplify.rule Simplify.defaults
-    ]
+    List.map (Rule.ignoreErrorsForDirectories [ "tests/VerifyExamples" ])
+        [ Docs.NoMissing.rule
+            { document = onlyExposed
+            , from = exposedModules
+            }
+        , Docs.ReviewAtDocs.rule
+        , Docs.ReviewLinksAndSections.rule
+        , Docs.UpToDateReadmeLinks.rule
+        , NoConfusingPrefixOperator.rule
+        , NoDebug.Log.rule
+        , NoExposingEverything.rule
+        , NoImportingEverything.rule []
+        , NoMissingTypeAnnotation.rule
+        , NoMissingTypeAnnotationInLetIn.rule
+        , NoMissingTypeExpose.rule
+        , NoPrematureLetComputation.rule
+        , NoSimpleLetBody.rule
+        , NoUnsortedCases.rule NoUnsortedCases.defaults
+        , NoUnsortedLetDeclarations.rule (NoUnsortedLetDeclarations.sortLetDeclarations |> NoUnsortedLetDeclarations.usedInExpressionFirst |> NoUnsortedLetDeclarations.alphabetically)
+        , NoUnsortedRecords.rule (NoUnsortedRecords.defaults |> NoUnsortedRecords.reportAmbiguousRecordsWithoutFix)
+        , NoUnsortedTopLevelDeclarations.rule (NoUnsortedTopLevelDeclarations.sortTopLevelDeclarations |> NoUnsortedTopLevelDeclarations.portsFirst |> NoUnsortedTopLevelDeclarations.exposedOrderWithPrivateLast |> NoUnsortedTopLevelDeclarations.alphabetically)
+        , NoUnused.CustomTypeConstructorArgs.rule
+        , NoUnused.CustomTypeConstructors.rule []
+        , NoUnused.Dependencies.rule
+        , NoUnused.Exports.rule
+        , NoUnused.Parameters.rule
+        , NoUnused.Patterns.rule
+        , NoUnused.Variables.rule
+        , Rule.ignoreErrorsForDirectories [ "tests/" ] NoDebug.TodoOrToString.rule
+        , Simplify.rule Simplify.defaults
+        ]

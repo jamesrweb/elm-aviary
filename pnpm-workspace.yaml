@@ -1,0 +1,4 @@
+allowBuilds:
+  elm: true
+  elm-format: true
+  elm-json: true
