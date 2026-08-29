@@ -51,7 +51,7 @@ runs:
       id: elm-publish
       uses: dillonkearns/elm-publish-action@v2
       with:
-        github-token: ${{ inputs.dry-run == false && github.token || '' }}
+        github-token: ${{ github.token }}
         path-to-elm: ./node_modules/.bin/elm
         dry-run: ${{ inputs.dry-run }}
 
