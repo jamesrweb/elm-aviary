@@ -11,11 +11,6 @@ inputs:
 runs:
   using: composite
   steps:
-    - uses: actions/checkout@v6
-      with:
-        fetch-depth: 0
-        persist-credentials: true
-
     - uses: pnpm/action-setup@v5
     - uses: actions/setup-node@v6
       with:
