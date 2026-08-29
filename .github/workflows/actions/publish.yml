@@ -1,0 +1,65 @@
+name: Publish
+
+on:
+  workflow_call:
+    inputs:
+      dry-run:
+        description: 'Run in dry-run mode'
+        required: true
+        type: boolean
+    secrets:
+      github-token:
+        required: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+          persist-credentials: true
+
+      - uses: pnpm/action-setup@v5
+      - uses: actions/setup-node@v6
+        with:
+          node-version: lts/*
+          cache: pnpm
+      - run: pnpm install
+
+      # Bump Elm version
+      - run: yes | pnpm exec elm bump || true
+
+      # Sync package.json version with elm.json
+      - name: Sync package.json version
+        run: |
+          ELM_VERSION=$(jq -r '.version' elm.json)
+          pnpm version "$ELM_VERSION" --no-git-tag-version
+
+      # Re-run pnpm install to update lock file
+      - run: pnpm install
+
+      # Auto-commit ALL changed files
+      - uses: stefanzweifel/git-auto-commit-action@v7
+        with:
+          commit_message: "chore: elm bump"
+
+      # Publish to Elm registry
+      - name: Publish to Elm registry
+        id: elm-publish
+        uses: dillonkearns/elm-publish-action@v2
+        with:
+          github-token: ${{ inputs.dry-run == false && secrets.github-token || '' }}
+          path-to-elm: ./node_modules/.bin/elm
+          dry-run: ${{ inputs.dry-run }}
+
+      # Create GitHub release only if publish happened and not dry-run
+      - name: Create GitHub Release
+        if: inputs.dry-run == false && steps.elm-publish.outputs.is-publishable == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.github-token }}
+        run: |
+          VERSION=$(jq -r '.version' elm.json)
+          gh release create "$VERSION" --generate-notes
