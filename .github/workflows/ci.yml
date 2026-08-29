@@ -10,13 +10,13 @@ concurrency:
 
 jobs:
   lint:
-    uses: ./.github/workflows/actions/lint.yml
+    uses: ./.github/actions/lint.yml
 
   test:
-    uses: ./.github/workflows/actions/test.yml
+    uses: ./.github/actions/test.yml
 
   publish-dry-run:
     needs: [lint, test]
-    uses: ./.github/workflows/actions/publish.yml
+    uses: ./.github/actions/publish.yml
     with:
       dry-run: true
