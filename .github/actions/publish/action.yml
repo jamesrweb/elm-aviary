@@ -23,11 +23,14 @@ runs:
     - run: yes | pnpm exec elm bump || true
       shell: bash
 
-    # Auto-commit elm.json change first
+    # Run formatter after bump
+    - run: pnpm format
+      shell: bash
+
+    # Auto-commit all changes (elm.json and formatted files)
     - uses: stefanzweifel/git-auto-commit-action@v7
       with:
         commit_message: "chore: elm bump"
-        file_pattern: elm.json
 
     # Sync package.json version with elm.json
     - name: Sync package.json version
@@ -40,11 +43,14 @@ runs:
     - run: pnpm install
       shell: bash
 
-    # Auto-commit package.json and lock file
+    # Run formatter again after install
+    - run: pnpm format
+      shell: bash
+
+    # Auto-commit all changes (package.json and lock file)
     - uses: stefanzweifel/git-auto-commit-action@v7
       with:
         commit_message: "chore: sync package version"
-        file_pattern: package.json pnpm-lock.yaml
 
     # Publish to Elm registry
     - name: Publish to Elm registry
