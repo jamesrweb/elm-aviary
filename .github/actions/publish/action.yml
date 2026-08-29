@@ -1,71 +1,54 @@
 name: Publish
 
-description: Bump version, sync package.json, and publish
+description: Publish to Elm registry and create GitHub release
 
 inputs:
   dry-run:
-    description: 'Run in dry-run mode'
-    required: true
+    description: Run in dry-run mode
+    required: false
     type: boolean
+    default: false
+  github-token:
+    description: GitHub token for publishing
+    required: true
+    type: string
+  path-to-elm:
+    description: Path to elm binary
+    required: false
+    type: string
+    default: ./node_modules/.bin/elm
 
 runs:
   using: composite
   steps:
     - uses: pnpm/action-setup@v5
+
     - uses: actions/setup-node@v6
       with:
         node-version: lts/*
         cache: pnpm
+
     - run: pnpm install
       shell: bash
 
-    # Bump Elm version
-    - run: yes | pnpm exec elm bump || true
-      shell: bash
-
-    # Run formatter after bump
-    - run: pnpm format
-      shell: bash
-
-    # Auto-commit all changes (elm.json and formatted files)
-    - uses: stefanzweifel/git-auto-commit-action@v7
-      with:
-        commit_message: "chore: elm bump"
-
-    # Sync package.json version with elm.json
-    - name: Sync package.json version
-      run: |
-        ELM_VERSION=$(jq -r '.version' elm.json)
-        pnpm version "$ELM_VERSION" --no-git-tag-version
-      shell: bash
-
-    # Re-run pnpm install to update lock file
-    - run: pnpm install
-      shell: bash
-
-    # Run formatter again after install
-    - run: pnpm format
-      shell: bash
-
-    # Auto-commit all changes (package.json and lock file)
-    - uses: stefanzweifel/git-auto-commit-action@v7
-      with:
-        commit_message: "chore: sync package version"
-
-    # Publish to Elm registry
-    - name: Publish to Elm registry
-      id: elm-publish
+    - name: Check if publishable
+      id: publish-check
       uses: dillonkearns/elm-publish-action@v2
       with:
-        github-token: ${{ github.token }}
-        path-to-elm: ./node_modules/.bin/elm
-        dry-run: ${{ inputs.dry-run }}
+        dry-run: true
+        path-to-elm: ${{ inputs.path-to-elm }}
 
-    # Create GitHub release only if publish happened and not dry-run
+    - name: Publish to Elm registry
+      if: ${{ inputs.dry-run == 'false' && steps.publish-check.outputs.is-publishable == 'true' }}
+      uses: dillonkearns/elm-publish-action@v2
+      with:
+        github-token: ${{ inputs.github-token }}
+        path-to-elm: ${{ inputs.path-to-elm }}
+
     - name: Create GitHub Release
-      if: inputs.dry-run == false && steps.elm-publish.outputs.is-publishable == 'true'
+      if: ${{ inputs.dry-run == 'false' && steps.publish-check.outputs.is-publishable == 'true' }}
       env:
-        GH_TOKEN: ${{ github.token }}
+        GH_TOKEN: ${{ inputs.github-token }}
       run: |
         VERSION=$(jq -r '.version' elm.json)
         gh release create "$VERSION" --generate-notes

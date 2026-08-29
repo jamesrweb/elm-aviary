@@ -3,6 +3,13 @@ name: CD
 on:
   push:
     branches: [master]
+    paths:
+      - 'src/**'
+      - 'elm.json'
+      - 'package.json'
+      - 'pnpm-lock.yaml'
+      - 'pnpm-workspace.yaml'
+  workflow_dispatch:
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -28,6 +35,7 @@ jobs:
       contents: write
     steps:
       - uses: actions/checkout@v6
+
       - uses: ./.github/actions/publish
         with:
-          dry-run: false
+          github-token: ${{ secrets.GITHUB_TOKEN }}
