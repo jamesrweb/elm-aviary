@@ -10,13 +10,21 @@ concurrency:
 
 jobs:
   lint:
-    uses: ./.github/actions/lint.yml
+    runs-on: ubuntu-latest
+    steps:
+      - uses: ./.github/actions/lint
 
   test:
-    uses: ./.github/actions/test.yml
+    runs-on: ubuntu-latest
+    steps:
+      - uses: ./.github/actions/test
 
   publish-dry-run:
     needs: [lint, test]
-    uses: ./.github/actions/publish.yml
-    with:
-      dry-run: true
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: ./.github/actions/publish
+        with:
+          dry-run: true
