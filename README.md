@@ -2,7 +2,11 @@
 
 An elm implementation of the birds from combinatory logic.
 
-Each bird in the Aviary represents a [function composition pattern](https://en.wikipedia.org/wiki/Function_composition) and each bird is implemented, as far as is possible, using [SKI combinator calculus](https://en.wikipedia.org/wiki/SKI_combinator_calculus) under the hood.
+Each bird in the Aviary represents a
+[function composition pattern](https://en.wikipedia.org/wiki/Function_composition)
+and each bird is implemented, as far as is possible, using
+[SKI combinator calculus](https://en.wikipedia.org/wiki/SKI_combinator_calculus)
+under the hood.
 
 ## Installation
 
