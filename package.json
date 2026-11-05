@@ -2,15 +2,16 @@
   "name": "elm-aviary",
   "version": "1.0.5",
   "description": "An elm implementation of the birds from combinatory logic. Inspired by the Haskell Data.Aviary.Birds package.",
-  "main": "index.js",
-  "scripts": {
-    "format": "elm-format src/ --yes && biome check --write",
-    "lint": "elm-verify-examples && elm-format src/ --validate && elm-review && biome check",
-    "test": "elm-verify-examples && elm-test",
-    "coverage": "elm-coverage --silent --open --force",
-    "documentation": "elm-doc-preview",
-    "postinstall": "rm -rf elm-stuff && ELM_HOME=$(pwd)/elm-home elm-janitor-apply-patches --all --noconsole || echo 'patching failed (non-critical)'"
+  "packageManager": "pnpm@12.17.0",
+  "engines": {
+    "node": ">=26.0.0"
   },
+  "author": {
+    "name": "James Robb",
+    "url": "https://github.com/jamesrweb",
+    "email": "47126579+jamesrweb@users.noreply.github.com"
+  },
+  "license": "BSD-3-Clause",
   "keywords": [
     "aviary",
     "combinatory-logic",
@@ -19,18 +20,21 @@
     "elm-package",
     "functional-compositions"
   ],
-  "author": {
-    "name": "James Robb",
-    "url": "https://github.com/jamesrweb",
-    "email": "47126579+jamesrweb@users.noreply.github.com"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jamesrweb/elm-aviary.git"
   },
-  "license": "BSD-3-Clause",
-  "packageManager": "pnpm@12.17.0",
-  "engines": {
-    "node": ">=26.0.0"
+  "bugs": {
+    "url": "https://github.com/jamesrweb/elm-aviary/issues"
   },
-  "dependencies": {
-    "elm": "0.19.3-0"
+  "homepage": "https://github.com/jamesrweb/elm-aviary#readme",
+  "scripts": {
+    "format": "elm-format src/ --yes && biome check --write",
+    "lint": "elm-verify-examples && elm-format src/ --validate && elm-review && biome check",
+    "test": "elm-verify-examples && elm-test",
+    "coverage": "elm-coverage --silent --open --force",
+    "documentation": "elm-doc-preview",
+    "postinstall": "rm -rf elm-stuff && ELM_HOME=$(pwd)/elm-home elm-janitor-apply-patches --all --noconsole || echo 'patching failed (non-critical)'"
   },
   "devDependencies": {
     "@biomejs/biome": "^2.6.4",
@@ -42,5 +46,9 @@
     "elm-review": "^2.13.5",
     "elm-test": "0.19.3-0",
     "elm-verify-examples": "^6.0.3"
-  }
+  },
+  "dependencies": {
+    "elm": "0.19.3-0"
+  },
+  "main": "index.js"
 }
