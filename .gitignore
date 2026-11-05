@@ -106,3 +106,6 @@ yarn.lock
 
 # PR description draft (gitignored)
 PR_DESCRIPTION.md
+
+# Biome: excluded review output
+review/suppressed/
