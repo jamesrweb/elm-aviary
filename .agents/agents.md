@@ -13,6 +13,6 @@ kind: agent-guidelines
   carries forward.
 - No changes without that permission, including commits, pushes, and workflow
   edits. Propose and wait when in doubt.
-- This repository must stay self-sufficient for outside contributors: do not
+- This repository must stay self-sufficient for outside contributors. Do not
   reference the repository owner's personal global skills from anything in this
   tree.
