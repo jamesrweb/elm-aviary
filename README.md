@@ -44,7 +44,7 @@ them.
 ## Repository layout
 
 ```
-./
+./                      # repository root
 ├── .agents/            # agent configuration (DotAgents protocol)
 ├── .github/            # CI and CD workflows plus shared composite actions
 ├── review/             # elm-review project with the custom rule set
